@@ -32,33 +32,24 @@ public class TestAlgorithms {
             System.out.println("\nTesting for n=" + testData.length);
             
             // 1. Prefix Tree (Trie) Testing
+            Trie trie = new Trie();
+            for (String data : testData) {
+                trie.insert(data);
+            }
             long trieStartTime = System.nanoTime();
-            testTrieAlgorithm(testData);
+            trie.autocomplete("th");
             long trieDuration = System.nanoTime() - trieStartTime;
-            System.out.println("  [Trie] Execution time : " + trieDuration + "ns");
+            System.out.println("  [Trie] Search time : " + trieDuration + "ns");
 
             // 2. Brute Force Testing
             long bruteStartTime = System.nanoTime();
-            testBruteForceAlgorithm(testData);
+            bruteForce.BruteForceTry.countMatches(testData, testData.length, "th");
             long bruteDuration = System.nanoTime() - bruteStartTime;
-            System.out.println("  [Brute Force] Execution time : " + bruteDuration + "ns");
+            System.out.println("  [Brute Force] Search time : " + bruteDuration + "ns");
         }
     }
 
-    private static void testTrieAlgorithm(String[] testData) {
-        Trie trie = new Trie();
-        for (String data : testData) {
-            trie.insert(data);
-        }
-        trie.autocomplete("th");
-    }
 
-    private static void testBruteForceAlgorithm(String[] testData) {
-        int matches = bruteForce.BruteForceTry.countMatches(testData, testData.length, "th");
-        if (matches < 0) {
-            System.out.println("Never happens");
-        }
-    }
 
     private static int loadDictionary(String filePath, String[] dictionary) {
         int count = 0;
