@@ -6,9 +6,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/**
- * Driver file designed to execute scalability testing for both Prefix Tree and Brute Force algorithms.
- */
 public class ScalabilityDriver {
     public static void main(String[] args) {
         String filePath = "data/words_10000.txt";
