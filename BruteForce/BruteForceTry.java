@@ -1,7 +1,8 @@
 package bruteForce;
 
 import java.util.Scanner;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileNotFoundException;
 
 public class BruteForceTry {
@@ -20,9 +21,10 @@ public class BruteForceTry {
 
     private static int loadDictionary(String filePath, String[] dictionary) {
         int count = 0;
-        try (Scanner fileScanner = new Scanner(new File(filePath))) {
-            while (fileScanner.hasNextLine() && count < dictionary.length) {
-                dictionary[count++] = fileScanner.nextLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) { //used BufferedReader for faster reading of file in load time, instead of Scanner.
+            String line;
+            while ((line = reader.readLine()) != null && count < dictionary.length) {
+                dictionary[count++] = line.split("\\s+")[0];    //Split the string here so  that in loading the dictionary only words will be loaded. 
             }
             System.out.println("Loaded " + count + " words.");
         } catch (FileNotFoundException e) {
@@ -30,14 +32,14 @@ public class BruteForceTry {
         }
         return count;
     }
-
+    
     private static void performSearch(String[] dict, int count, String prefix) {
         long startTime = System.nanoTime();
         int matches = 0;
 
         for (int i = 0; i < count; i++) {
-            if (dict[i].startsWith(prefix)) {
-                System.out.println("Match found: " + dict[i].split("\\s+")[0]);
+            if (dict[i] != null && dict[i].startsWith(prefix)) { //added null to check for any null pointer exceptions.
+                System.out.println("Match found: " + dict[i]); //Removed the split, for small time improvement when using performSearch
                 matches++;
             }
         }
@@ -52,7 +54,7 @@ public class BruteForceTry {
         }
     }
 
-    public static int countMatches(String[] dict, int count, String prefix) {
+    public static int countMatches(String[] dict, int count, String prefix) { 
         int matches = 0;
         for (int i = 0; i < count; i++) {
             if (dict[i] != null && dict[i].startsWith(prefix)) {
