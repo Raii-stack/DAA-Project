@@ -1,7 +1,7 @@
 package test;
 
-import prefixTree.Trie;
-import bruteForce.BruteForceTry;
+import PrefixTree.Trie;
+import BruteForce.BruteForceTry;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -49,6 +49,9 @@ public class ScalabilityDriver {
         for (int n : inputSizes) {
             if (n > totalWords) continue;
             String[] testData = Arrays.copyOfRange(dictionary, 0, n);
+
+            // Warm up the method so the measurement reflects steady-state execution.
+            myBruteForceAlgorithm(testData);
 
             // 1. Record the start time in nanoseconds
             long startTime = System.nanoTime();

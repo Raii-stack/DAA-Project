@@ -1,4 +1,4 @@
-package prefixTree;
+package PrefixTree;
 
 public class TrieNode {
     TrieNode[] children;

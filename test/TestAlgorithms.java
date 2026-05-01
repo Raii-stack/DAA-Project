@@ -1,5 +1,5 @@
 package test;
-import prefixTree.Trie;
+import PrefixTree.Trie;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,8 +42,9 @@ public class TestAlgorithms {
             System.out.println("  [Trie] Search time : " + trieDuration + "ns");
 
             // 2. Brute Force Testing
+            BruteForce.BruteForceTry.countMatches(testData, testData.length, "th");
             long bruteStartTime = System.nanoTime();
-            bruteForce.BruteForceTry.countMatches(testData, testData.length, "th");
+            BruteForce.BruteForceTry.countMatches(testData, testData.length, "th");
             long bruteDuration = System.nanoTime() - bruteStartTime;
             System.out.println("  [Brute Force] Search time : " + bruteDuration + "ns");
         }

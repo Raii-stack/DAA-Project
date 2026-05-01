@@ -1,4 +1,4 @@
-package prefixTree;
+package PrefixTree;
 
 import javax.swing.*;
 import java.awt.*;
